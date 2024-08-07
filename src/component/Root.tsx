@@ -10,6 +10,8 @@ const Root: React.FC<RootProps> = () => {
         <Link to="/">home</Link>
         <Link to="/useEffect">UseEffect</Link>
         <Link to="/react-query">React query</Link>
+        <Link to="/RTK-query">RTK query</Link>
+        <Link to="/rtk-query@react-query">RTK + RQuery</Link>
       </div>
       <Outlet />
     </>

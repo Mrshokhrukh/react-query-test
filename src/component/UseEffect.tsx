@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type UseEffectProps = {};
 
@@ -9,10 +10,10 @@ const UseEffect: React.FC<UseEffectProps> = () => {
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
-
+  let navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("https://www.course-api.com/react-store-products")
+      .get("https://fakestoreapi.com/products/")
       .then((res) => {
         setData(res.data);
         setLoading(false);
@@ -22,6 +23,10 @@ const UseEffect: React.FC<UseEffectProps> = () => {
         setLoading(false);
       });
   }, []);
+
+  const checkData = (id: any) => {
+    navigate(`/useEffect-data-details/${id}`);
+  };
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -34,9 +39,9 @@ const UseEffect: React.FC<UseEffectProps> = () => {
       <h1>Products fetched using useEffect</h1>
       {data.map((dt: any, i: any) => {
         return (
-          <div key={i} className="data">
+          <div key={i} className="data" onClick={() => checkData(dt.id)}>
             <h2>
-              {i + 1}. {dt.name}
+              {i + 1}. {dt.title}
             </h2>
           </div>
         );
